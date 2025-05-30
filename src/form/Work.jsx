@@ -28,7 +28,10 @@ function Work(){
             <h1 className="form-header">Work / Experience</h1>
             {formData.map((work,index) => (
                 <div key={work.id}>
-                    <h3 className="work">Work {index+1}</h3>
+                    <div className="workEdit">
+                        <h3 className="work">Work {index+1}</h3>
+                        <button type="button" onClick={() => removeWork(work.id)}>Remove</button>
+                    </div>
                     <div className="form-info-input">
                         <label htmlFor="workCompany">Company Name: </label>
                         <input type="text" id="workCompany" name="workCompany" value={work.workCompany} onChange={(e) => handleChange(index,e)} required />
@@ -49,10 +52,9 @@ function Work(){
                         <label htmlFor="workEndDate">End Date: </label>
                         <input type="date" id="workEndDate" name="workEndDate" value={work.workEndDate} onChange={(e) => handleChange(index,e)} required />
                     </div>
-                    <button type="button" onClick={() => removeWork(work.id)}>Remove</button>
                 </div>
             ))}
-            <button type="button" onClick={addWork}>Add Work</button>
+            <button type="button" onClick={addWork} className="addButton">Add Work</button>
         </div>
         </>
     )

@@ -28,7 +28,10 @@ function Education(){
             <h1 className="form-header">Education</h1>
             {formData.map((school,index) => (
                 <div key={school.id}>
-                    <h3 className="school">School {index+1}</h3>
+                    <div className="schoolEdit">
+                        <h3 className="school">School {index+1}</h3>
+                        <button type="button" onClick={() => removeSchool(school.id)}>Remove</button>
+                    </div>
                     <div className="form-info-input">
                         <label htmlFor="schoolname">School Name: </label>
                         <input type="text" id="schoolname" name="schoolname" value={school.schoolname} onChange={(e) => handleChange(index,e)} required />
@@ -45,10 +48,9 @@ function Education(){
                         <label htmlFor="schoolenddate">End Date: </label>
                         <input type="date" id="schoolenddate" name="schoolenddate" value={school.schoolenddate} onChange={(e) => handleChange(index,e)} required />
                     </div>
-                    <button type="button" onClick={() => removeSchool(school.id)}>Remove</button>
                 </div>
             ))}
-            <button type="button" onClick={addSchool}>Add School</button>
+            <button type="button" onClick={addSchool} className="addButton">Add School</button>
         </div>
         </>
     )

@@ -3,3 +3,73 @@
   padding: 0px;
   box-sizing: border-box;
 }
+
+#root {
+  display: grid;
+  grid-template-rows: .5fr 15fr 2.5fr;
+  grid-template-columns: repeat(3, 1fr);
+  height: 100vh;
+}
+
+#container {
+  background-color: lightgray;
+  grid-row: 2;
+  margin: 0px 20px;
+  padding: 10px;
+  border-radius: 15px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#form-header {
+  background-color: gray;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.form-header {
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.schoolEdit, .workEdit {
+  display: flex;
+  justify-content: center;
+}
+
+.schoolEdit h3, .schoolEdit button, .workEdit h3, .workEdit button {
+  margin: 0px 20px;
+  margin-bottom: 10px;
+}
+
+#form-education, #form-work{
+  display: flex;
+  flex-direction: column;
+}
+
+.addButton {
+  justify-self: center;
+  align-self: center;
+}
+
+.form-info-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+  min-width: 75%;
+  justify-self: center;
+}
+
+label {
+  width: 150px;
+  margin-right: .2em;
+}
+
+input, textarea {
+  flex: 1;
+  padding: 0.5em;
+  resize: vertical;
+}
