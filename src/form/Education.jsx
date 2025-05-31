@@ -1,32 +1,28 @@
-import { useState } from "react";
-
-function Education(){
+const Education = ({data,setData}) => {
     const generateID = () => {
         return Date.now() + Math.random();
     }
 
-    const [formData, setFormData] = useState([{id: generateID(), schoolname: "", schoolstudy: "", schoolstartdate: "", schoolenddate:""}]);
-
     const handleChange = (index, e) => {
-        const updatedForm = [...formData];
+        const updatedForm = [...data];
         updatedForm[index][e.target.name] = e.target.value;
-        setFormData(updatedForm);
+        setData(updatedForm);
     };
 
     const addSchool = () => {
-        setFormData([...formData, {id: generateID(), schoolname: "", schoolstudy:"", schoolstartdate:"", schoolenddate:""}]);
+        setData([...data, {id: generateID(), schoolname: "", schoolstudy:"", schoolstartdate:"", schoolenddate:""}]);
     };
 
     const removeSchool = (id) => {
-        const updatedForm = formData.filter(school => school.id !== id);
-        setFormData(updatedForm);
+        const updatedForm = data.filter(school => school.id !== id);
+        setData(updatedForm);
     };
 
     return (
         <>
         <div id="form-education">
             <h1 className="form-header">Education</h1>
-            {formData.map((school,index) => (
+            {data.map((school,index) => (
                 <div key={school.id}>
                     <div className="schoolEdit">
                         <h3 className="school">School {index+1}</h3>

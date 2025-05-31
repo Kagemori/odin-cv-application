@@ -1,32 +1,28 @@
-import { useState } from "react";
-
-function Work(){
+const Work = ({data,setData}) => {
     const generateID = () => {
         return Date.now() + Math.random();
     }
     
-    const [formData, setFormData] = useState([{id: generateID(), workCompany: "", workTitle: "", workDesc: "", workStartDate:"", workEndDate:""}]);
-
     const handleChange = (index, e) => {
-        const updatedForm = [...formData];
+        const updatedForm = [...data];
         updatedForm[index][e.target.name] = e.target.value;
-        setFormData(updatedForm);
+        setData(updatedForm);
     };
 
     const addWork = () => {
-        setFormData([...formData, {id: generateID(), workCompany: "", workTitle: "", workDesc: "", workStartDate:"", workEndDate:""}]);
+        setData([...data, {id: generateID(), workCompany: "", workTitle: "", workDesc: "", workStartDate:"", workEndDate:""}]);
     };
 
     const removeWork = (id) => {
-        const updatedForm = formData.filter(work => work.id !== id);
-        setFormData(updatedForm);
+        const updatedForm = data.filter(work => work.id !== id);
+        setData(updatedForm);
     };
 
     return (
         <>
         <div id="form-work">
             <h1 className="form-header">Work / Experience</h1>
-            {formData.map((work,index) => (
+            {data.map((work,index) => (
                 <div key={work.id}>
                     <div className="workEdit">
                         <h3 className="work">Work {index+1}</h3>
