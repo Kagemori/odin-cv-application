@@ -11,7 +11,7 @@ const App = () => {
     return Date.now() + Math.random();
   }
 
-  const [formInfoData, setFormInfoData] = useState([{id: generateID(), infoName: "", infoEmail: "", infoPhone: ""}])
+  const [formInfoData, setFormInfoData] = useState([{id: generateID(), infoName: "", infoEmail: "", infoPhone: "", infoResidence: ""}])
   const [formSchoolData, setFormSchoolData] = useState([{id: generateID(), schoolname: "", schoolstudy: "", schoolstartdate: "", schoolenddate:""}]);
   const [formWorkData, setFormWorkData] = useState([{id: generateID(), workCompany: "", workTitle: "", workDesc: "", workStartDate:"", workEndDate:""}]);
 

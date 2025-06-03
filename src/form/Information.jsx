@@ -15,6 +15,10 @@ const Information = ({data,setData}) => {
                 <label htmlFor="phone">Phone Number: </label>
                 <input type="tel" id="phone" name="phone" value={data.infoPhone} onChange={(e) => setData({...data, infoPhone: e.target.value})} required />
             </div>
+            <div className="form-info-input">
+                <label htmlFor="residence">Place of Residence: </label>
+                <input type="text" id="residence" name="residence" value={data.infoResidence} onChange={(e) => setData({...data, infoResidence: e.target.value})} required />
+            </div>
         </div>
         </>
     )
