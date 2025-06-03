@@ -5,6 +5,9 @@ import Education from './form/Education.jsx'
 import Work from './form/Work.jsx'
 import ResumePreview from './ResumePreview.jsx'
 import { useState } from "react";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import React, {useRef} from "react";
 
 const App = () => {
   const generateID = () => {
@@ -14,6 +17,26 @@ const App = () => {
   const [formInfoData, setFormInfoData] = useState([{id: generateID(), infoName: "", infoEmail: "", infoPhone: "", infoResidence: ""}])
   const [formSchoolData, setFormSchoolData] = useState([{id: generateID(), schoolname: "", schoolstudy: "", schoolstartdate: "", schoolenddate:""}]);
   const [formWorkData, setFormWorkData] = useState([{id: generateID(), workCompany: "", workTitle: "", workDesc: "", workStartDate:"", workEndDate:""}]);
+
+  const resumeRef = useRef();
+
+  const handleResumePDF = async () => {
+      const element = resumeRef.current;
+
+      const canvas = await html2canvas(element, {
+          scale: 2,
+          useCORS: true,
+      });
+
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("resume.pdf");
+  };
 
   return (
     <StrictMode>
@@ -27,10 +50,15 @@ const App = () => {
       </div>
       <div id="preview-container">
         <h1 id="preview-header">Resume Preview</h1>
-        <div id="preview-page">
+        <div id="preview-page" ref={resumeRef}>
           <div id="preview-div">
             <ResumePreview infoData={formInfoData} schoolData={formSchoolData} workData={formWorkData}/>
           </div>
+        </div>
+        <div className='pdf-download'>
+          <button className='download-button' onClick={handleResumePDF}>
+            Save as PDF
+          </button>
         </div>
       </div>
     </StrictMode>
